@@ -1,9 +1,9 @@
 import React from "react";
-import Loader from "react-loader-spinner";
+import {ProgressBar} from "react-loader-spinner";
 
 function useLoader(loading) {
   const loader = loading ? (
-    <Loader
+    <ProgressBar
       className="loader"
       type="ThreeDots"
       color="#333"
