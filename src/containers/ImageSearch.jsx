@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { getImages } from "../utils/functions";
-import SearchBar from "./searchBar";
-import ResultList from "./ResultList";
+import SearchBar from "../components/SearchBar";
+import ResultList from "../components/ResultList";
 import { KeywordContext } from "../context/keywordContext";
 import { ImagesContext } from "../context/imagesContext";
 
-const ImageSearch = props => {
+const ImageSearch = () => {
   const { keyword } = useContext(KeywordContext);
   const { setImages } = useContext(ImagesContext);
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const ImageSearch = props => {
 
   function searchImages(page = 1, per_page = 30) {
     setLoading(true);
-    getImages(page, per_page, keyword).then(response => {
+    getImages(page, per_page, keyword).then((response) => {
       setImages(response.results);
       setLoading(false);
       setTitle(keyword + " Pictures");

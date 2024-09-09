@@ -1,5 +1,5 @@
 import React from "react";
-import {ProgressBar} from "react-loader-spinner";
+import { ProgressBar } from "react-loader-spinner";
 
 function useLoader(loading) {
   const loader = loading ? (

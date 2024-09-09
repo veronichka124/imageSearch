@@ -1,14 +1,13 @@
-import React from "react";
 import { KeywordContext } from "../context/keywordContext";
 
-const SearchBar = props => {
+const SearchBar = (props) => {
   function onFormSubmit(event) {
     event.preventDefault();
     props.searchImages();
   }
   return (
     <KeywordContext.Consumer>
-      {keywordContext => {
+      {(keywordContext) => {
         return (
           <div className="searchBlock">
             <h1>Search free photos from Unsplash</h1>

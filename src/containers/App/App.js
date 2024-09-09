@@ -1,5 +1,5 @@
 import React from "react";
-import ImageSearch from "../../components/imageSearch";
+import ImageSearch from "../ImageSearch";
 import KeywordContextProvider from "../../context/keywordContext";
 import ImagesContextProvider from "../../context/imagesContext";
 

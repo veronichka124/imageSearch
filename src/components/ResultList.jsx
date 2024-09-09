@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import ImageList from "./imageList";
+import ImageList from "./ImageList";
 import { ImagesContext } from "../context/imagesContext";
 import useLoader from "../hoooks/useLoader";
 import useImageAdding from "../hoooks/useImageAdding";
 
-const ResultList = props => {
+const ResultList = (props) => {
   const { images } = useContext(ImagesContext);
   const [loader] = useLoader(props.loading);
   const [hasMore, endMessage, addImagesOnScroll] = useImageAdding();

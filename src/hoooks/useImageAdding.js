@@ -16,7 +16,7 @@ function useImageAdding() {
 
   function addImagesOnScroll() {
     if (requests < requestLimit) {
-      getImages(page, 5, keyword).then(response => {
+      getImages(page, 5, keyword).then((response) => {
         setTotalImages(response.total);
         if (images.length !== response.total) {
           let newImages = [...images, ...response.results];
