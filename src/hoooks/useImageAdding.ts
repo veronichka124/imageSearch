@@ -1,13 +1,19 @@
-import { useContext, useEffect, useState } from "react";
-import { ImagesContext } from "../context/imagesContext";
+import { useEffect, useState } from "react";
+import { useImagesContext } from "../context/imagesContext";
 import { getImages } from "../utils/functions";
-import { KeywordContext } from "../context/keywordContext";
+import { useKeywordContext } from "../context/keywordContext";
 
-function useImageAdding() {
-  const { images, appendImages, requests, page } = useContext(ImagesContext);
+interface ImageAddingProps {
+  hasMore: boolean;
+  endMessage: string;
+  addImagesOnScroll: () => void;
+}
+
+function useImageAdding(): ImageAddingProps {
+  const { images, appendImages, requests, page } = useImagesContext();
   const [totalImages, setTotalImages] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const { keyword } = useContext(KeywordContext);
+  const { keyword } = useKeywordContext();
   const requestLimit = 2;
 
   useEffect(() => {
@@ -19,7 +25,7 @@ function useImageAdding() {
       getImages(page, 5, keyword).then((response) => {
         setTotalImages(response.total);
         if (images.length !== response.total) {
-          let newImages = [...images, ...response.results];
+          const newImages = [...images, ...response.results];
           appendImages(newImages);
         } else {
           setHasMore(false);
@@ -30,12 +36,12 @@ function useImageAdding() {
     }
   }
 
-  let endMessage =
+  const endMessage: string =
     images.length !== totalImages
       ? "You have reached limit"
       : "You have seen it all";
 
-  return [hasMore, endMessage, addImagesOnScroll];
+  return { hasMore, endMessage, addImagesOnScroll };
 }
 
 export default useImageAdding;

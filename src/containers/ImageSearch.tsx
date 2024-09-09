@@ -1,13 +1,13 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { getImages } from "../utils/functions";
 import SearchBar from "../components/SearchBar";
 import ResultList from "../components/ResultList";
-import { KeywordContext } from "../context/keywordContext";
-import { ImagesContext } from "../context/imagesContext";
+import { useKeywordContext } from "../context/keywordContext";
+import { useImagesContext } from "../context/imagesContext";
 
 const ImageSearch = () => {
-  const { keyword } = useContext(KeywordContext);
-  const { setImages } = useContext(ImagesContext);
+  const { keyword } = useKeywordContext();
+  const { setImages } = useImagesContext();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("Image Search App");
 

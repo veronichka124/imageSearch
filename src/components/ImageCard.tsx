@@ -1,21 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { downloadImage } from "../utils/functions";
-import useSpans from "../hoooks/useSpans";
 
-const ImageCard = props => {
-  const imageRef = useRef();
-  const [spans, calculateSpans] = useSpans(imageRef);
+interface ImageCardProps {
+  image: any;
+}
 
-  useEffect(() => {
-    imageRef.current.addEventListener("load", calculateSpans);
-  });
+const ImageCard = (props: ImageCardProps) => {
+  const imageRef = useRef<HTMLImageElement>(null);
 
   const downloadHandler = () => {
     downloadImage(props.image);
   };
 
   return (
-    <div className="imageCard" style={{ gridRowEnd: `span ${spans}` }}>
+    <div className="imageCard">
       <img
         ref={imageRef}
         src={props.image.urls.small}

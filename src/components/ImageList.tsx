@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
 import ImageCard from "./ImageCard";
-import { ImagesContext } from "../context/imagesContext";
+import { useImagesContext } from "../context/imagesContext";
 
-const ImageList = (props) => {
-  const { images } = useContext(ImagesContext);
+const ImageList = () => {
+  const { images } = useImagesContext();
 
   const listOfImages = images.map((img, index) => {
     return <ImageCard key={index + "-" + img.id} image={img} />;
