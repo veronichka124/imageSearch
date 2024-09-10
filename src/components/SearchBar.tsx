@@ -1,15 +1,12 @@
-import { useKeywordContext } from "../context/keywordContext";
-
 interface SearchBarProps {
   searchImages: () => void;
+  onSearchChange: (key: string) => void;
 }
 
-const SearchBar = (props: SearchBarProps) => {
-  const { setKeyword } = useKeywordContext();
-
+const SearchBar = ({ searchImages, onSearchChange }: SearchBarProps) => {
   function onFormSubmit(event: React.FormEvent) {
     event.preventDefault();
-    props.searchImages();
+    searchImages();
   }
 
   return (
@@ -22,7 +19,7 @@ const SearchBar = (props: SearchBarProps) => {
           name="photo"
           autoComplete="off"
           placeholder="Search photos by a keyword"
-          onChange={setKeyword}
+          onChange={(e) => onSearchChange(e.target.value)}
         />
         <input className="submitBtn" type={"submit"} value={"Search"} />
       </form>

@@ -6,12 +6,13 @@ import useImageAdding from "../hoooks/useImageAdding";
 
 interface ResultListProps {
   loading: boolean;
+  searchKey: string;
 }
 
-const ResultList = (props: ResultListProps) => {
+const ResultList = ({ loading, searchKey }: ResultListProps) => {
   const { images } = useImagesContext();
-  const [loader] = useLoader(props.loading);
-  const { hasMore, endMessage, addImagesOnScroll } = useImageAdding();
+  const [loader] = useLoader(loading);
+  const { hasMore, endMessage, addImagesOnScroll } = useImageAdding(searchKey);
 
   if (images.length === 0) return <p>No results</p>;
 

@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 import { useImagesContext } from "../context/imagesContext";
 import { getImages } from "../utils/functions";
-import { useKeywordContext } from "../context/keywordContext";
 
-interface ImageAddingProps {
-  hasMore: boolean;
-  endMessage: string;
-  addImagesOnScroll: () => void;
-}
-
-function useImageAdding(): ImageAddingProps {
+function useImageAdding(keyword: string) {
   const { images, appendImages, requests, page } = useImagesContext();
   const [totalImages, setTotalImages] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const { keyword } = useKeywordContext();
   const requestLimit = 2;
 
   useEffect(() => {
