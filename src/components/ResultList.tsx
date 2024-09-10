@@ -13,26 +13,23 @@ const ResultList = (props: ResultListProps) => {
   const [loader] = useLoader(props.loading);
   const { hasMore, endMessage, addImagesOnScroll } = useImageAdding();
 
-  const noResultText = images.length === 0 ? "No Results" : "";
+  if (images.length === 0) return <p>No results</p>;
 
   return (
-    <div>
-      <InfiniteScroll
-        className="infiniteScroll"
-        next={addImagesOnScroll}
-        hasMore={!!hasMore}
-        loader={loader}
-        dataLength={images.length}
-        endMessage={
-          <p style={{ textAlign: "center", marginBottom: 40 }}>
-            <b>{endMessage}</b>
-          </p>
-        }
-      >
-        <ImageList />
-      </InfiniteScroll>
-      {noResultText}
-    </div>
+    <InfiniteScroll
+      className="infiniteScroll"
+      next={addImagesOnScroll}
+      hasMore={hasMore}
+      loader={loader}
+      dataLength={images.length}
+      endMessage={
+        <p style={{ textAlign: "center", marginBottom: 40 }}>
+          <b>{endMessage}</b>
+        </p>
+      }
+    >
+      <ImageList />
+    </InfiniteScroll>
   );
 };
 

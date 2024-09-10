@@ -4,13 +4,13 @@ import { useImagesContext } from "../context/imagesContext";
 const ImageList = () => {
   const { images } = useImagesContext();
 
-  const listOfImages = images.map((img, index) => {
-    return <ImageCard key={index + "-" + img.id} image={img} />;
+  const listOfImages = images.map((img) => {
+    return <ImageCard key={`imageCard-${img.id}`} image={img} />;
   });
 
   return (
-    <div>
-      <div className="imageList">{listOfImages}</div>
+    <div className="imagesContainer">
+      <div className="imageList">{listOfImages}</div>;
     </div>
   );
 };

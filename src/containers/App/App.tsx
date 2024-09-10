@@ -4,13 +4,13 @@ import { ImagesContextProvider } from "../../context/imagesContext";
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <KeywordContextProvider>
         <ImagesContextProvider>
           <ImageSearch />
         </ImagesContextProvider>
       </KeywordContextProvider>
-    </div>
+    </main>
   );
 }
 

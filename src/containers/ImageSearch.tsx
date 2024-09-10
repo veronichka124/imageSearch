@@ -25,10 +25,10 @@ const ImageSearch = () => {
   }
 
   return (
-    <div>
+    <>
       <SearchBar searchImages={searchImages} />
       <ResultList loading={loading} />
-    </div>
+    </>
   );
 };
 
