@@ -1,17 +1,11 @@
 import axios from "axios";
-
-export interface Image {
-  links: {
-    download_location: string;
-  };
-  alt_description: string;
-}
+import { Image, ImagesResponse } from "../types/images";
 
 export async function getImages(
   page: number,
   per_page: number,
   keyword: string
-): Promise<any> {
+): Promise<ImagesResponse> {
   const url: string = "https://api.unsplash.com/search/photos";
   return await axios
     .get(url, {

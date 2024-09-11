@@ -1,12 +1,13 @@
 import { createContext, useState, useContext, ReactNode } from "react";
+import { Image } from "../types/images";
 
 interface ImagesContextProps {
-  images: any[];
+  images: Image[];
   requests: number;
   page: number;
   totalImages: number;
-  setImages: (newImages: any[]) => void;
-  appendImages: (newImages: any[]) => void;
+  setImages: (newImages: Image[]) => void;
+  appendImages: (newImages: Image[]) => void;
   clearImages: () => void;
   setTotalImages: (total: number) => void;
 }
@@ -14,12 +15,12 @@ interface ImagesContextProps {
 const ImagesContext = createContext<ImagesContextProps | undefined>(undefined);
 
 const ImagesContextProvider = ({ children }: { children: ReactNode }) => {
-  const [images, setImagesState] = useState<any[]>([]);
+  const [images, setImagesState] = useState<Image[]>([]);
   const [requests, setRequests] = useState(0);
   const [page, setPage] = useState(2);
   const [totalImages, setTotalImages] = useState(0);
 
-  const setImages = (newImages: any[]) => {
+  const setImages = (newImages: Image[]) => {
     setImagesState(newImages);
     setRequests((prevRequests) => prevRequests + 1);
     setPage((prevPage) => prevPage + 1);
@@ -31,7 +32,7 @@ const ImagesContextProvider = ({ children }: { children: ReactNode }) => {
     setPage(2);
   };
 
-  const appendImages = (newImages: any[]) => {
+  const appendImages = (newImages: Image[]) => {
     setImagesState((prevImages) => [...prevImages, ...newImages]);
     setRequests((prevRequests) => prevRequests + 1);
     setPage((prevPage) => prevPage + 1);

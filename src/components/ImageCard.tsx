@@ -2,9 +2,10 @@ import { useRef } from "react";
 import { downloadImage } from "../utils/functions";
 import useGridRowEnd from "../hoooks/useGridRowEnd";
 import { ReactComponent as DownloadIcon } from "../assets/download.svg"; // Import SVG as a React component
+import { Image } from "../types/images";
 
 interface ImageCardProps {
-  image: any;
+  image: Image;
 }
 
 const ImageCard = ({ image }: ImageCardProps) => {
