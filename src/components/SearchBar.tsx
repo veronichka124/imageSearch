@@ -1,14 +1,9 @@
 interface SearchBarProps {
-  searchImages: () => void;
+  onFormSubmit: (event: React.FormEvent) => void;
   onSearchChange: (key: string) => void;
 }
 
-const SearchBar = ({ searchImages, onSearchChange }: SearchBarProps) => {
-  function onFormSubmit(event: React.FormEvent) {
-    event.preventDefault();
-    searchImages();
-  }
-
+const SearchBar = ({ onFormSubmit, onSearchChange }: SearchBarProps) => {
   return (
     <div className="searchBlock">
       <h1>Search free photos from Unsplash</h1>

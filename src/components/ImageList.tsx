@@ -10,7 +10,7 @@ const ImageList = () => {
 
   return (
     <div className="imagesContainer">
-      <div className="imageList">{listOfImages}</div>;
+      <div className="imageList">{listOfImages}</div>
     </div>
   );
 };

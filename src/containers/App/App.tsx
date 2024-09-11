@@ -1,11 +1,11 @@
-import ImageSearch from "../ImageSearch";
+import Main from "../Main";
 import { ImagesContextProvider } from "../../context/imagesContext";
 
 function App() {
   return (
     <main className="App">
       <ImagesContextProvider>
-        <ImageSearch />
+        <Main />
       </ImagesContextProvider>
     </main>
   );

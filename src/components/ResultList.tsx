@@ -10,16 +10,20 @@ interface ResultListProps {
 }
 
 const ResultList = ({ loading, searchKey }: ResultListProps) => {
-  const { images } = useImagesContext();
+  const { images, totalImages } = useImagesContext();
   const [loader] = useLoader(loading);
-  const { hasMore, endMessage, addImagesOnScroll } = useImageAdding(searchKey);
+  const { addImagesOnScroll } = useImageAdding();
+  const hasMore = images.length < totalImages;
+  const endMessage: string = hasMore
+    ? "You have reached request limit"
+    : "You have seen it all";
 
   if (images.length === 0) return <p>No results</p>;
 
   return (
     <InfiniteScroll
       className="infiniteScroll"
-      next={addImagesOnScroll}
+      next={() => addImagesOnScroll(searchKey)}
       hasMore={hasMore}
       loader={loader}
       dataLength={images.length}

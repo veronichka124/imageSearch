@@ -1,39 +1,47 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useImagesContext } from "../context/imagesContext";
 import { getImages } from "../utils/functions";
+import { capitalizeFirstLetter } from "../utils/helpers";
 
-function useImageAdding(keyword: string) {
-  const { images, appendImages, requests, page } = useImagesContext();
-  const [totalImages, setTotalImages] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const requestLimit = 2;
+function useImageAdding() {
+  const { appendImages, requests, page, setImages, setTotalImages } =
+    useImagesContext();
+  const [loading, setLoading] = useState(false);
+  const requestLimit = 3;
+  const per_page = 15;
 
-  useEffect(() => {
-    setHasMore(true);
-  }, [images]);
-
-  function addImagesOnScroll() {
-    if (requests < requestLimit) {
-      getImages(page, 5, keyword).then((response) => {
+  function searchNewImages(keyword: string) {
+    const page = 1;
+    setLoading(true);
+    getImages(page, per_page, keyword)
+      .then((response) => {
         setTotalImages(response.total);
-        if (images.length !== response.total) {
-          const newImages = [...images, ...response.results];
-          appendImages(newImages);
-        } else {
-          setHasMore(false);
-        }
+        setImages(response.results);
+        document.title = `${capitalizeFirstLetter(keyword)} Pictures`;
+      })
+      .finally(() => {
+        setLoading(false);
       });
-    } else {
-      setHasMore(false);
-    }
   }
 
-  const endMessage: string =
-    images.length !== totalImages
-      ? "You have reached limit"
-      : "You have seen it all";
+  function addImagesOnScroll(keyword: string) {
+    if (requests >= requestLimit) return;
+    setLoading(true);
+    getImages(page, per_page, keyword)
+      .then((response) => {
+        appendImages(response.results);
+        setTotalImages(response.total);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
 
-  return { hasMore, endMessage, addImagesOnScroll };
+  return {
+    addImagesOnScroll,
+    searchNewImages,
+    loading,
+  };
 }
 
 export default useImageAdding;
