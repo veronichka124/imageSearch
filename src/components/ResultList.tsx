@@ -1,8 +1,8 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import ImageList from "./ImageList";
 import { useImagesContext } from "../context/imagesContext";
-import useLoader from "../hoooks/useLoader";
 import useImageAdding from "../hoooks/useImageAdding";
+import Loader from "./Loader";
 
 interface ResultListProps {
   loading: boolean;
@@ -11,21 +11,21 @@ interface ResultListProps {
 
 const ResultList = ({ loading, searchKey }: ResultListProps) => {
   const { images, totalImages } = useImagesContext();
-  const [loader] = useLoader(loading);
   const { addImagesOnScroll } = useImageAdding();
   const hasMore = images.length < totalImages;
   const endMessage: string = hasMore
     ? "You have reached request limit"
     : "You have seen it all";
 
-  if (images.length === 0) return <p>No results</p>;
+  if (loading) return <Loader />;
+  else if (images.length === 0 && !!searchKey) return <p>No results</p>;
 
   return (
     <InfiniteScroll
       className="infiniteScroll"
       next={() => addImagesOnScroll(searchKey)}
       hasMore={hasMore}
-      loader={loader}
+      loader={<Loader />}
       dataLength={images.length}
       endMessage={
         <p style={{ textAlign: "center", marginBottom: 40 }}>

@@ -1,3 +1,5 @@
+import { ReactComponent as SearchIcon } from "../assets/search.svg"; // Import SVG as a React component
+
 interface SearchBarProps {
   onFormSubmit: (event: React.FormEvent) => void;
   onSearchChange: (key: string) => void;
@@ -6,7 +8,7 @@ interface SearchBarProps {
 const SearchBar = ({ onFormSubmit, onSearchChange }: SearchBarProps) => {
   return (
     <div className="searchBlock">
-      <h1>Search free photos from Unsplash</h1>
+      <h1>Search photos from Unsplash</h1>
       <form onSubmit={onFormSubmit}>
         <input
           className="keywordInput"
@@ -16,7 +18,9 @@ const SearchBar = ({ onFormSubmit, onSearchChange }: SearchBarProps) => {
           placeholder="Search photos by a keyword"
           onChange={(e) => onSearchChange(e.target.value)}
         />
-        <input className="submitBtn" type={"submit"} value={"Search"} />
+        <button className="searchIcon" type="submit">
+          <SearchIcon className="icon" />
+        </button>
       </form>
     </div>
   );
