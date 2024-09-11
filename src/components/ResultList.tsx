@@ -1,7 +1,7 @@
 import InfiniteScroll from "react-infinite-scroll-component";
 import ImageList from "./ImageList";
 import { useImagesContext } from "../context/imagesContext";
-import useImageAdding from "../hoooks/useImageAdding";
+import useImageAdding from "../hooks/useImageAdding";
 import Loader from "./Loader";
 
 interface ResultListProps {

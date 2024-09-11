@@ -2,7 +2,7 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import ResultList from "../components/ResultList";
 import { useImagesContext } from "../context/imagesContext";
-import useImageAdding from "../hoooks/useImageAdding";
+import useImageAdding from "../hooks/useImageAdding";
 
 const ImageSearch = () => {
   const { setImages, clearImages } = useImagesContext();
