@@ -1,25 +1,16 @@
 ## About The Project
 
 This project is a ReactJS practical assignment. <br />
-The purpose is to create simple image search web application. 
+The purpose is to create simple image search web application.
 
-You can see the app [here](https://veronikahromchenkova.github.io/imageSearch/). 
+You can see the app [here](https://veronichka124.github.io/imageSearch/).
 
 ## How The App Works
 
 Enter keyword into the search bar and press Search button. <br />
-The app will retrieve all images by keyword. If there are no results, you will get a "No Result" message. <br />
+The app will retrieve all images by keyword. <br />
 On image hover you will se the image author name and the download button.<br />
 On scroll the app will load more images until your get your request limit.
-
-## Demo
-
-![App Demo](demo.gif)
-
-## Tests
-
-The is an automatic Cypress test that runs and checks the app.<br />
-You can find it in cypress/integration/tests/app_test.js.
 
 ## Code formatting
 
