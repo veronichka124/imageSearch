@@ -10,7 +10,7 @@ interface ResultListProps {
 }
 
 const ResultList = ({ loading, searchKey }: ResultListProps) => {
-  const { images, totalImages } = useImagesContext();
+  const { images, totalImages, requests } = useImagesContext();
   const { addImagesOnScroll } = useImageAdding();
   const hasMore = images.length < totalImages;
   const endMessage: string = hasMore
@@ -19,6 +19,7 @@ const ResultList = ({ loading, searchKey }: ResultListProps) => {
 
   if (loading) return <Loader />;
   else if (images.length === 0 && !!searchKey) return <p>No results</p>;
+  else if (images.length === 0) return null;
 
   return (
     <InfiniteScroll

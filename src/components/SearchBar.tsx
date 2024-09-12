@@ -1,24 +1,40 @@
-import { ReactComponent as SearchIcon } from "../assets/search.svg"; // Import SVG as a React component
+import { useState } from "react";
+import { ReactComponent as SearchIcon } from "../assets/search.svg";
+import { ReactComponent as ClearIcon } from "../assets/clear.svg";
 
 interface SearchBarProps {
   onFormSubmit: (event: React.FormEvent) => void;
-  onSearchChange: (key: string) => void;
 }
 
-const SearchBar = ({ onFormSubmit, onSearchChange }: SearchBarProps) => {
+const SearchBar = ({ onFormSubmit }: SearchBarProps) => {
+  const [value, setValue] = useState<string>("");
+
   return (
     <div className="searchBlock">
-      <h1>Search photos from Unsplash</h1>
       <form onSubmit={onFormSubmit}>
         <input
           className="keywordInput"
           type="text"
-          name="photo"
+          name="search"
           autoComplete="off"
+          value={value}
           placeholder="Search photos by a keyword"
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={(e) => setValue(e.target.value)}
         />
-        <button className="searchIcon" type="submit">
+        {value && (
+          <>
+            <button
+              className="iconBtn clearIcon"
+              type="button"
+              title="Clear"
+              onClick={() => setValue("")}
+            >
+              <ClearIcon className="icon" />
+            </button>
+            <span className="divider" />
+          </>
+        )}
+        <button className="iconBtn searchIcon" type="submit" title="Search">
           <SearchIcon className="icon" />
         </button>
       </form>

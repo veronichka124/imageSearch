@@ -1,5 +1,6 @@
 $hover-cover: #00000030;
 $white: #fff;
+$light-gray: #eee;
 
 $bp-mobile: 480px;
 $bp-tablet: 768px;
@@ -25,6 +26,10 @@ code {
 
 .App {
   text-align: center;
+}
+
+h1 {
+  font-size: 24px;
 }
 
 .loaderWrapper {
@@ -56,9 +61,6 @@ code {
   max-width: 1200px;
   display: inline-block;
   width: 100%;
-  h1 {
-    font-size: 24px;
-  }
   form {
     position: relative;
     border: 1px solid #ccc;
@@ -67,25 +69,39 @@ code {
     padding: 0 20px;
     margin: 0 10px;
     border-radius: 24px;
+    height: 40px;
     input {
       width: 100%;
-      height: 40px;
+      height: 100%;
       border: none;
       &:focus {
         outline: none;
       }
     }
-    button[type="submit"] {
+    button {
       border: none;
       background: none;
       padding: 0;
       cursor: pointer;
+      &.iconBtn {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
     }
     .icon {
       fill: #ccc;
+      padding: 0 8px;
+      box-sizing: content-box;
       &:hover {
         fill: #333;
       }
+    }
+    .divider {
+      align-self: center;
+      background-color: #c4c4c4;
+      height: 16px;
+      width: 1px;
     }
   }
 }
@@ -142,11 +158,12 @@ code {
       .downloadBtn {
         svg {
           float: right;
-          width: 35px;
-          height: 27px;
-          background-color: $white;
-          padding: 3px;
+          width: 28px;
+          height: 20px;
+          background-color: $light-gray;
+          padding: 8px;
           border-radius: 7px;
+          box-sizing: content-box;
         }
       }
     }
@@ -202,10 +219,8 @@ code {
 }
 
 @media (min-width: $bp-desktop) {
-  .searchBlock {
-    h1 {
-      font-size: 32px;
-    }
+  h1 {
+    font-size: 32px;
   }
   .imageList {
     grid-template-columns: repeat(3, minmax(0, 1fr));

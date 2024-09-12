@@ -3,30 +3,31 @@ import SearchBar from "../components/SearchBar";
 import ResultList from "../components/ResultList";
 import { useImagesContext } from "../context/imagesContext";
 import useImageAdding from "../hooks/useImageAdding";
+import { capitalizeFirstLetter } from "./../utils/helpers";
 
 const ImageSearch = () => {
-  const { setImages, clearImages } = useImagesContext();
+  const { clearImages } = useImagesContext();
   const { searchNewImages, loading } = useImageAdding();
   const [searchKey, setSearchKey] = useState<string>("");
-
-  const onSearchChange = (key: string) => {
-    setSearchKey(key);
-  };
+  const title = searchKey
+    ? `${capitalizeFirstLetter(searchKey)} photos`
+    : "Search photos from Unsplash";
 
   function handleSearchSubmit(event: React.FormEvent) {
     event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    const keyword = formData.get("search") as string;
+    setSearchKey(keyword);
     clearImages();
-    searchNewImages(searchKey);
+    if (!!keyword) searchNewImages(keyword);
   }
 
   return (
-    <>
-      <SearchBar
-        onFormSubmit={handleSearchSubmit}
-        onSearchChange={onSearchChange}
-      />
+    <div className="container">
+      <h1>{title}</h1>
+      <SearchBar onFormSubmit={handleSearchSubmit} />
       <ResultList loading={loading} searchKey={searchKey} />
-    </>
+    </div>
   );
 };
 
