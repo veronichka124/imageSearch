@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useImagesContext } from "../context/imagesContext";
-import { getImages } from "../utils/functions";
+import { getImages } from "../utils/api";
 import { capitalizeFirstLetter } from "../utils/helpers";
 
 function useImageAdding() {

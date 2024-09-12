@@ -1,4 +1,4 @@
-import { downloadImage } from "../utils/functions";
+import { downloadImage } from "../utils/api";
 import { ReactComponent as DownloadIcon } from "../assets/download.svg"; // Import SVG as a React component
 import { Image } from "../types/images";
 
