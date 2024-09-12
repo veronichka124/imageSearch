@@ -12,7 +12,7 @@ export default [
       "react/react-in-jsx-scope": "off",
     },
     linterOptions: {
-      // reportUnusedDisableDirectives: "error",
+      reportUnusedDisableDirectives: "error",
     },
   },
   { languageOptions: { globals: globals.browser, ecmaVersion: 2021 } },
